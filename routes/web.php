@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StudentCourseController;
+use App\Http\Controllers\UserPageController;
+use App\Http\Controllers\ScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +19,16 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
-    return view('main');
+    return view('welcome');
 });
 
-Route::get('view-roles', [HomeController::class, 'index']);
+Route::get('/view-roles', [HomeController::class, 'index']);
+
+Route::get('/user-page', [UserPageController::class, 'index']);
+
+Route::get('/course', [StudentCourseController::class, 'index']);
+
+Route::get('/schedule', [ScheduleController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
