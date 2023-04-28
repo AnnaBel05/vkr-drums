@@ -29,6 +29,5 @@ class Schedule extends Model
 
     public function rooms()
     {
-        return $this->hasOne('App\Models\Room','id','room_id');
-    }
+        return $this->hasOne('App\Models\Room','id','room_id');    }
 }

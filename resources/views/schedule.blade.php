@@ -13,7 +13,11 @@
         @foreach($schedules as $schedule => $scheduleValue)
         <div>
             <div>
-                <h3>{{ $scheduleValue->professor->name }}</h3>
+                <h3>{{ $scheduleValue->professors->name }}</h3>
+                <h3>{{ $scheduleValue->daysofweek->name }}</h3>
+                <h3>{{ $scheduleValue->room->begin_time }}</h3>
+                <h3>{{ $scheduleValue->room->end_time }}</h3>
+
             </div>
         </div>
         @endforeach
