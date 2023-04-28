@@ -9,30 +9,26 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Schedule extends Model
 {
     use HasFactory;
-    /**
-     * Get all of the comments for the Schedule
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
 
      // TODO: ЗАМЕНИТЬ НА БЕЛОНГТУ
-    // public function professors(): HasMany
-    // {
-    //     return $this->hasMany(User::class);
-    // }
 
-    // public function courses(): HasMany
-    // {
-    //     return $this->hasMany(StudentCourse::class);
-    // }
+    public function professors()
+    {
+        return $this->hasOne('App\Models\User','id','professor_id');
+    }
 
-    // public function dayofweeks(): HasMany
-    // {
-    //     return $this->hasMany(DayOfWeek::class);
-    // }
+    public function courses()
+    {
+        return $this->hasOne('App\Models\StudentCourse','id','student_course_id');
+    }
 
-    // public function rooms(): HasMany
-    // {
-    //     return $this->hasMany(Room::class);
-    // }
+    public function daysofweek()
+    {
+        return $this->hasOne('App\Models\DayOfWeek','id','day_of_week_id');
+    }
+
+    public function rooms()
+    {
+        return $this->hasOne('App\Models\Room','id','room_id');
+    }
 }

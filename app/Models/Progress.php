@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Progress extends Model
 {
     use HasFactory;
+
+    public function excercises()
+    {
+        return $this->hasOne('App\Models\Excercise','id','media_id');
+    }
 }
