@@ -28,7 +28,8 @@ Route::get('/user-page', [UserPageController::class, 'index']);
 
 Route::get('/course', [StudentCourseController::class, 'index']);
 
-Route::get('/schedule', [ScheduleController::class, 'index']);
+// Route::get('schedules', [ScheduleController::class, 'index']);
+Route::resource('schedules',ScheduleController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
