@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Schedule;
+use App\Models\User;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -31,12 +32,15 @@ class ScheduleController extends Controller
 
     public function show(Schedule $schedule) 
     {
+
         return view('schedules.show',compact('schedule'));
     }
 
     public function edit(Schedule $schedule) 
     {
-        return view('schedules.edit',compact('schedule'));
+        $professor = User::all();
+
+        return view('schedules.edit',compact('schedule','professor'));
     }
 
     public function update(Request $request, Schedule $schedule) 

@@ -10,6 +10,9 @@ class Schedule extends Model
 {
     use HasFactory;
 
+    //TODO: ADD OTHER FIELDS
+    protected $fillable = ['professor_id'];
+
      // TODO: ЗАМЕНИТЬ НА БЕЛОНГТУ
 
     public function professors()
