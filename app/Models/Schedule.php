@@ -11,7 +11,8 @@ class Schedule extends Model
     use HasFactory;
 
     //TODO: ADD OTHER FIELDS
-    protected $fillable = ['professor_id'];
+    protected $fillable = ['professor_id','day_of_week_id','room_id'];
+    public $timestamps = false;
 
      // TODO: ЗАМЕНИТЬ НА БЕЛОНГТУ
 

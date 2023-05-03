@@ -10,16 +10,16 @@
 
         <div>
             <ul class="text-align:center display:inline-block">
-                <li>
+                <li class="inline">
                     {{ $schedule->professors->name }} :
                 </li>
-                <li>
+                <li class="inline">
                     {{ $schedule->daysofweek->name }} :
                 </li>
-                <li>
+                <li class="inline">
                     {{ $schedule->rooms->begin_time ?? '??' }} :
                 </li>
-                <li>
+                <li class="inline">
                     {{ $schedule->rooms->end_time ?? '??' }} 
                 </li>
             </ul>

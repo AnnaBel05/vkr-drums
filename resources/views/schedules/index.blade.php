@@ -20,25 +20,25 @@
                     <div>
                         <div>
                             <ul class="text-align:center display:inline-block">
-                                <li>
+                                <li class="inline">
                                     {{ $scheduleValue->professors->name }} :
                                 </li>
-                                <li>
+                                <li class="inline">
                                     {{ $scheduleValue->daysofweek->name }} :
                                 </li>
-                                <li>
+                                <li class="inline">
                                     {{ $scheduleValue->rooms->begin_time ?? '??' }} :
                                 </li>
-                                <li>
+                                <li class="inline">
                                     {{ $scheduleValue->rooms->end_time ?? '??' }} 
                                 </li>
-                                <li>
+                                <li class="inline">
                                     <a class="btn btn-info" href="{{ route('schedules.show',$scheduleValue->id) }}">Show</a>
                                 </li>
-                                <li>
+                                <li class="inline">
                                     <a class="btn btn-primary" href="{{ route('schedules.edit',$scheduleValue->id) }}">Edit</a>
                                 </li>
-                                <li>
+                                <li class="inline">
                                     <form action="{{ route('schedules.destroy',$scheduleValue->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')

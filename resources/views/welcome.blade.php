@@ -22,6 +22,14 @@
         }
 
         li {
+            /* display: inline; */
+        }
+        
+        ul.a {
+
+        }
+
+        li.inline {
             display: inline;
         }
 
@@ -864,19 +872,19 @@
     
     <div>
         <ul>
-            <li>
+            <li class="inline">
                 <a href="{{ url('/') }}"> MAIN PAGE </a> |
             </li>
-            <li>
+            <li class="inline">
                 <a href="{{ url('view-roles') }}"> Список </a> |
             </li>
-            <li>
+            <li class="inline">
                 <a href="{{ url('course') }}">Курсы</a> |
             </li>
-            <li>
+            <li class="inline">
                 <a href="{{ url('schedules') }}">Расписание</a> |
             </li>
-            <li>
+            <li class="inline">
                 <a href="{{ url('user-page') }}">Личный кабинет</a>
             </li>
         </ul>
