@@ -16,19 +16,13 @@
         </div>
     @endif
 
-    <form action="{{ route('studentcourses.store') }}" method="POST">
+    <form action="{{ route('excercises.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
     
          <div class="row">
             <div class="form-group">
-                <strong>Преподаватель: </strong>
-                <select name="professor_id" class="form-control" id="professor_id" enctype="multipart/form-data" required>
-                    @foreach ($professor as $professorValue)
-                    <option value="{{ $professorValue->id }}">
-                        {{ $professorValue->name }}
-                    </option>
-                    @endforeach
-                </select>
+                <strong>Выберите изображение: </strong>
+                <input type="file" class="form-control-file" id="media">
             </div>
 
             <div class="form-group">
@@ -41,18 +35,6 @@
                     @endforeach
                 </select>
             </div>
-
-            {{-- <div class="form-group">
-                <strong>Студент: </strong>
-                <input id="custom_field1" name="custom_field1" type="text" list="datastudent_id" class="form-control">
-                <datalist name="datastudent_id" id="datastudent_id" required>
-                    @foreach ($student as $studentValue)
-                    <option value="{{ $studentValue->id }}">
-                        {{ $studentValue->name }}
-                    </option>
-                    @endforeach
-                </datalist>
-            </div> --}}
     
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                     <button type="submit" class="btn btn-primary">Submit</button>

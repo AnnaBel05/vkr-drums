@@ -10,6 +10,9 @@ class Media extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['link','name'];
+    public $timestamps = false;
+
     public function excercise(): HasMany
     {
         return $this->hasMany(Excercise::class);

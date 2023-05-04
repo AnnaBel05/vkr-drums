@@ -12,6 +12,8 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <!-- Styles -->
     <style>
@@ -918,6 +920,12 @@
             </div>
 
             <br>
+            {{-- <div>
+                <select name="professor_id" class="form-control" id="professor_id" required>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                </select>
+            </div> --}}
 
             <!-- <div class="mt-16">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
@@ -1022,5 +1030,9 @@
         </div>
     </div>
 </body>
-
+<script>
+    $(document).ready(function() {
+    $('#professor_id').select2();
+});
+</script>
 </html>

@@ -10,6 +10,10 @@ class StudentCourse extends Model
 {
     use HasFactory;
 
+    // public $timestamps = false;
+
+    protected $fillable = ['professor_id','student_id'];
+
     public function schedule(): HasMany
     {
         return $this->hasMany(Schedule::class);

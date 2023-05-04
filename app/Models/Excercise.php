@@ -10,6 +10,9 @@ class Excercise extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['media_id','theory','student_course_id'];
+    public $timestamps = false;
+
     public function medias()
     {
         return $this->hasOne('App\Models\Media','id','media_id');

@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\ExcerciseController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentCourseController;
 use App\Http\Controllers\UserPageController;
 use App\Http\Controllers\ScheduleController;
+use App\Models\Excercise;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,8 @@ Route::get('/view-roles', [HomeController::class, 'index']);
 Route::get('/user-page', [UserPageController::class, 'index']);
 
 Route::get('/course', [StudentCourseController::class, 'index']);
+Route::get('/excercise',[ExcerciseController::class, 'index']);
+Route::get('/createExcercise', [StudentCourseController::class, 'createExcercise']);
 
 // Route::get('schedules', [ScheduleController::class, 'index']);
 Route::resource('schedules',ScheduleController::class);
