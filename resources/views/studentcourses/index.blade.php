@@ -13,6 +13,10 @@
             <a class="btn btn-success" href="{{ route('studentcourses.create') }}"> Create New Course </a>
         </div>
 
+        <div class="pull-right">
+            <a class="btn btn-success" href="{{ route('studentcourses.edit', $studentcourse->id) }}"> Add a task </a>
+        </div>
+
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
                 <p>{{ $message }}</p>
@@ -37,15 +41,10 @@
                         {{ $excercise->theory ?? '' }}
                     </li>
                     <li class="inline">
-                        <img src="{{ $excercise->medias->link ?? '??' }}" >
+                        <img src="{{ url('/storage/' . $excercise->medias->link) }}" width="200px">
                     </li>
                 </ul>
             @endforeach
-        </div>
-        <img src="/storage/app/public/media/course/Screenshot from 2022-12-24 23-33-35.png">
-
-        <div class="pull-right">
-            <a class="btn btn-success" href="{{ route('studentcourses.edit', $studentcourse->id) }}"> Add a task </a>
         </div>
 
         <div>

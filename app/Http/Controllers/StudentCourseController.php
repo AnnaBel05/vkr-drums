@@ -8,6 +8,7 @@ use App\Models\StudentCourse;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class StudentCourseController extends ExcerciseController
 {
@@ -80,7 +81,8 @@ class StudentCourseController extends ExcerciseController
             $destination_path = 'public/media/course';
             $media = $request->file('media');
             $mediaName = $media->getClientOriginalName();
-            $path = $request->file('media')->storeAs($destination_path,$mediaName);
+            $path = $request->file('media')->store($destination_path, 'public');
+            // $path = $request->file('media')->storeAs($destination_path,$mediaName);  
 
             $mediaVal = new Media;
             $mediaVal->name = $mediaName;
