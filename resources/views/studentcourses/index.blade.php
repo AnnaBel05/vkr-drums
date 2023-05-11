@@ -26,10 +26,10 @@
         <div>
             <ul class="text-align:center display:inline-block">
                 <li>
-                    Преподаватель: {{ $studentcourse->professor->name }}
+                    Преподаватель: {{ $professor->name }}
                 </li>
                 <li>
-                    Студент: {{ $studentcourse->student->name }}
+                    Студент: {{ $student->name }}
                 </li>
                 <li>
                     Список заданий:
@@ -41,7 +41,12 @@
                         {{ $excercise->theory ?? '' }}
                     </li>
                     <li class="inline">
-                        <img src="{{ url('/storage/' . $excercise->medias->link) }}" width="200px">
+                        @if (pathinfo($excercise->medias->link, PATHINFO_EXTENSION) == 'png')
+                            <img src="{{ url('/storage/' . $excercise->medias->link) }}" width="200px">
+                        @endif
+                        <li>
+                            <a href="{{ url('/storage/' . $excercise->medias->link) }}">Download file</a>
+                        </li>
                     </li>
                 </ul>
             @endforeach

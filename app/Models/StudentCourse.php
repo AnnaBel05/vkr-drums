@@ -12,25 +12,30 @@ class StudentCourse extends Model
 
     // public $timestamps = false;
 
-    protected $fillable = ['professor_id','student_id'];
+    // protected $fillable = ['professor_id','student_id'];
 
     public function schedule(): HasMany
     {
         return $this->hasMany(Schedule::class);
     }
 
-    public function excercise(): HasMany
+    public function student(): HasMany 
     {
-        return $this->hasMany(Excercise::class);
+        return $this->hasMany(User::class);
     }
 
-    public function professor()
-    {
-        return $this->hasOne('App\Models\User','id','professor_id');
-    }
+    // public function excercise(): HasMany
+    // {
+    //     return $this->hasMany(Excercise::class);
+    // }
 
-    public function student()
-    {
-        return $this->hasOne('App\Models\User','id','student_id');
-    }
+    // public function professor()
+    // {
+    //     return $this->hasOne('App\Models\User','id','professor_id');
+    // }
+
+    // public function student()
+    // {
+    //     return $this->hasOne('App\Models\User','id','student_id');
+    // }
 }

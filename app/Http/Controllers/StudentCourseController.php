@@ -12,17 +12,22 @@ use Illuminate\Support\Facades\Storage;
 
 class StudentCourseController extends ExcerciseController
 {
+
+    //TODO: сменить метод на автоопределение препода и студента
+    //TODO: СТРАНИЦА ЗАПИСИ СТУДЕНТОМ НА КУРС
     public function index() {
         $headers = [ 'Content-Type' => 'application/json; charset=utf-8' ];
         $studentcourses = StudentCourse::all();
 
         $studentid = Auth::id();
 
-        $studentcourse = StudentCourse::where('student_id',$studentid)->first();
+        $student = User::where('id',$studentid)->first();
+        $studentcourse = $student->course;
+        $professor = User::where('course_id',$studentcourse->id)->first();
         $excercises = Excercise::where('student_course_id',$studentcourse->id)->get();
 
         if ($studentcourse != null) {
-            return view('studentcourses.index',compact('studentcourse','excercises'));
+            return view('studentcourses.index',compact('studentcourse','excercises','professor','student'));
         }
         else {
             return view('studentcourses.indexnew');
@@ -95,7 +100,7 @@ class StudentCourseController extends ExcerciseController
             $excercise->student_course_id = $studentcourse->id;
             $excercise->save($request->all());
 
-            $studentcourse->update($request->all());
+            // $studentcourse->update($request->all());
             return redirect()->route('studentcourses.index')->with('success','Excercise added successfully');
         }
         else {
@@ -105,7 +110,7 @@ class StudentCourseController extends ExcerciseController
             $excercise->student_course_id = $studentcourse->id;
             $excercise->save($request->all());
 
-            $studentcourse->update($request->all());
+            // $studentcourse->update($request->all());
             return redirect()->route('studentcourses.index')->with('success','Excercise added successfully');
         }
 
