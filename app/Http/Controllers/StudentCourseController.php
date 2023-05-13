@@ -12,77 +12,88 @@ use Illuminate\Support\Facades\Storage;
 
 class StudentCourseController extends ExcerciseController
 {
-
-    //TODO: сменить метод на автоопределение препода и студента
     //TODO: СТРАНИЦА ЗАПИСИ СТУДЕНТОМ НА КУРС
-    public function index() {
-        $headers = [ 'Content-Type' => 'application/json; charset=utf-8' ];
-        $studentcourses = StudentCourse::all();
+    public function index()
+    {
+        if (Auth::check()) {
+            $userid = Auth::id();
+            $user = User::where('id', $userid)->first();
 
-        $studentid = Auth::id();
+            // dd($user->course_id);
 
-        $student = User::where('id',$studentid)->first();
-        $studentcourse = $student->course;
-        $professor = User::where('course_id',$studentcourse->id)->first();
-        $excercises = Excercise::where('student_course_id',$studentcourse->id)->get();
+            if ($user->course_id != null) {
+                $headers = ['Content-Type' => 'application/json; charset=utf-8'];
+                $studentcourses = StudentCourse::all();
+                $studentcourse = $user->course;
+                $professor = User::where('course_id', $studentcourse->id)
+                    ->where('role_id', 2)->first();
+                $students = User::where('course_id', $studentcourse->id)
+                    ->where('role_id', 3)->get();
+                $excercises = Excercise::where('student_course_id', $studentcourse->id)->get();
 
-        if ($studentcourse != null) {
-            return view('studentcourses.index',compact('studentcourse','excercises','professor','student'));
-        }
-        else {
-            return view('studentcourses.indexnew');
+                return view('studentcourses.index', compact('studentcourse', 'excercises', 'professor', 'students'));
+            }
+            else {
+                return view('studentcourses.indexnew');
+            }
+        } else {
+            return view('studentcourses.index-no-login');
         }
     }
 
-    public function upload(Request $request) 
+    public function upload(Request $request)
     {
-        
     }
 
     // TODO: create for professors only
     // TODO: sign up with diff roles (not in this class)
 
-    public function create() 
+    public function create()
     {
-        $professor = User::all();
-        $student = User::all();
-        return view('studentcourses.create', compact('professor','student'));
+        $professor = User::where('role_id',2)->get();
+
+        return view('studentcourses.create', compact('professor'));
     }
 
-    public function store(Request $request) 
+    public function store(Request $request)
     {
-        $studentCourse = StudentCourse::create($request->all());
+        $professor = User::where('id', $request->professor_id)->first();
+        $studentCourse = $professor->course;
 
-        $studentCourse->professor_id = $request->professor_id;
-        $studentCourse->student_id = $request->student_id;
-        
-        $studentCourse->update($request->all());
+        // $studentCourse = StudentCourse::create($request->all());
+        // $studentCourse->update($request->all());
 
-        return redirect()->route('studentcourses.index')->with('success','Course was created succesfully.');
+        $studentid = Auth::id();
+        $student = User::where('id', $studentid)->first();
+        $student->course_id = $studentCourse->id;
+
+        // dd($request);
+
+        $student->update();
+
+        return redirect()->route('studentcourses.index')->with('success', 'Course was created succesfully.');
     }
 
-    public function show() 
+    public function show()
     {
-
     }
 
-    public function edit(StudentCourse $studentcourse) 
+    public function edit(StudentCourse $studentcourse)
     {
         $media = Media::all();
         $excercise = Excercise::all();
 
 
-        return view('studentcourses.edit', compact('studentcourse','media','excercise'));
+        return view('studentcourses.edit', compact('studentcourse', 'media', 'excercise'));
     }
 
-    public function update(Request $request, StudentCourse $studentcourse) 
+    public function update(Request $request, StudentCourse $studentcourse)
     {
         $input = $request->all();
 
         $studentcourse->updated_at = now();
 
-        if($request->hasFile('media'))
-        {
+        if ($request->hasFile('media')) {
             $destination_path = 'public/media/course';
             $media = $request->file('media');
             $mediaName = $media->getClientOriginalName();
@@ -101,9 +112,8 @@ class StudentCourseController extends ExcerciseController
             $excercise->save($request->all());
 
             // $studentcourse->update($request->all());
-            return redirect()->route('studentcourses.index')->with('success','Excercise added successfully');
-        }
-        else {
+            return redirect()->route('studentcourses.index')->with('success', 'Excercise added successfully');
+        } else {
             $excercise = new Excercise;
             $excercise->media_id = null;
             $excercise->theory = $request->theory;
@@ -111,16 +121,15 @@ class StudentCourseController extends ExcerciseController
             $excercise->save($request->all());
 
             // $studentcourse->update($request->all());
-            return redirect()->route('studentcourses.index')->with('success','Excercise added successfully');
+            return redirect()->route('studentcourses.index')->with('success', 'Excercise added successfully');
         }
 
         // return redirect()->route('studentcourses.index')->with('success','Excercise added successfully');
 
-        
+
     }
 
-    public function destroy() 
+    public function destroy()
     {
-
     }
 }

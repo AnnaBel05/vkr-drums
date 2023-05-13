@@ -31,7 +31,7 @@
                 </select>
             </div>
 
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <strong>Студент: </strong>
                 <select name="student_id" class="form-control" id="student_id" required>
                     @foreach ($student as $studentValue)
@@ -40,7 +40,7 @@
                     </option>
                     @endforeach
                 </select>
-            </div>
+            </div> --}}
 
             {{-- <div class="form-group">
                 <strong>Студент: </strong>

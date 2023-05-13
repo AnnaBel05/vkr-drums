@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'course_id'
     ];
 
     /**
@@ -56,6 +57,11 @@ class User extends Authenticatable
     public function course()
     {
         return $this->hasOne('App\Models\StudentCourse','id', 'course_id');
+    }
+
+    public function role()
+    {
+        return $this->hasOne('App\Models\Role','id', 'role_id');
     }
 
         // public function student()

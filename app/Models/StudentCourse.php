@@ -12,7 +12,7 @@ class StudentCourse extends Model
 
     // public $timestamps = false;
 
-    // protected $fillable = ['professor_id','student_id'];
+    protected $fillable = ['created_at', 'updated_at'];
 
     public function schedule(): HasMany
     {
@@ -20,6 +20,10 @@ class StudentCourse extends Model
     }
 
     public function student(): HasMany 
+    {
+        return $this->hasMany(User::class);
+    }
+    public function professor(): HasMany 
     {
         return $this->hasMany(User::class);
     }

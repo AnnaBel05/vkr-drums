@@ -34,7 +34,7 @@ Route::get('/createExcercise', [StudentCourseController::class, 'createExcercise
 
 // Route::get('schedules', [ScheduleController::class, 'index']);
 Route::resource('schedules',ScheduleController::class);
-Route::resource('studentcourses',StudentCourseController::class);
+Route::resource('studentcourses',StudentCourseController::class)->middleware('auth');;
 
 
 Route::get('/dashboard', function () {

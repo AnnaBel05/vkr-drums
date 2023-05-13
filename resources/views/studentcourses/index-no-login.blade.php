@@ -16,11 +16,7 @@
     @endif
 
     <div>
-        <h1> ВЫ НЕ ПРИВЯЗАНЫ К КУРСУ :З</h1>
-    </div>
-
-    <div class="pull-right">
-        <a class="btn btn-success" href="{{ route('studentcourses.create') }}"> Записаться на курс </a>
+        <h1> ВЫ НЕ ВОШЛИ В АККАУНТ </h1>
     </div>
 </div>     
 
