@@ -1,7 +1,7 @@
 ## drum studio
 
 Главная страница:
-![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/4e62971d-4376-4528-accf-a972608ba7ad)
+![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/97a10008-f1cf-4ca6-b5be-43cf3e79b884)
 
 ![image](https://user-images.githubusercontent.com/79002614/235179366-ae11b33e-c4cb-4699-a8c1-2534b8557ae7.png)
 
