@@ -15,6 +15,14 @@
 Расписание:
 ![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/78f19412-5781-491d-b119-a23748f27c50)
 
+Курсы от лица студента:
+![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/8c085f4a-9371-4608-9648-ad494f4af588)
+
+Добавить ответ на задание если прием дистанционный:
+![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/d37da6c5-f38e-418a-9ed7-8c93452801aa)
+
+
+
 
 
 
