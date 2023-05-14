@@ -2,7 +2,11 @@
 @section('title', 'Курс')
 @section('content')
 
-    <div class="container">
+    @php
+        $prevAssignment = null;
+    @endphp
+
+    <div class="container3">
         <div>
             <div class="row">
                 <h3> Курс </h3>
@@ -26,15 +30,15 @@
         <div>
             <ul class="text-align:center display:inline-block">
                 <li>
-                    Преподаватель: {{ $professor->name }}
+                    Преподаватель: {{ trim($professor->name) }}
                 </li>
                 <li>
-                    Студент: 
-                    @foreach ($students as $student)
+                    Студент:
                     <ul>
-                        <li> {{ $student->name }} </li>
+                        @foreach ($students as $student)
+                            <li class="inline"> {{ trim($student->name) }};</li>
+                        @endforeach
                     </ul>
-                    @endforeach
                 </li>
                 {{-- <li>
                     example text example text example text example text example text example text example text 
@@ -48,7 +52,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container2">
         <div>
             <div class="row">
                 <h3> Теория </h3>
@@ -57,42 +61,85 @@
         @foreach ($excercises as $excercise)
             <ul>
                 <li class="inline">
+                    {{ $excercise->task_name ?? '' }}
+                </li>
+                <li class="inline">
+                    |
+                    <a class="bttn2" href="{{ url('/storage/' . $excercise->medias->link) }}">Скачать</a>
+                </li>
+                @if ($excercise->result_type_id == 1)
+                    @if (Auth::user()->role_id == 3)
+                    |
+                        <li class="inline">
+                            <a class="bttn" href="{{ route('studentcourses.edit-task', $excercise->id) }}">Добавить
+                                ответ</a>
+                        </li>
+                    @endif
+                @else
+                    <li class="inline">
+                        <a class="bttn ahidden" href="{{ route('studentcourses.edit-task', $excercise->id) }}">Добавить
+                            ответ</a>
+                    </li>
+                @endif
+                <li>
                     {{ $excercise->theory ?? '' }}
                 </li>
                 <li class="inline">
-                    @if (pathinfo($excercise->medias->link, PATHINFO_EXTENSION) == 'png')
+                    @if (pathinfo($excercise->medias->link, PATHINFO_EXTENSION) == 'png' ||
+                            pathinfo($excercise->medias->link, PATHINFO_EXTENSION) == 'jpg')
                         <img src="{{ url('/storage/' . $excercise->medias->link) }}" width="100">
                     @endif
-                    <li>
-                        <a href="{{ url('/storage/' . $excercise->medias->link) }}">Download file</a>
-                    </li>
+                <li>
+                </li>
                 </li>
             </ul>
         @endforeach
     </div>
 
-    <div class="container">
-
+    <div class="container2">
         <div>
             <div class="row">
-                <h3> Список заданий </h3>
+                <h3> Задания </h3>
             </div>
         </div>
-        @foreach ($excercises as $excercise)
+        <div>
             <ul>
-                <li class="inline">
-                    {{ $excercise->theory ?? '' }}
-                </li>
-                <li class="inline">
-                    @if (pathinfo($excercise->medias->link, PATHINFO_EXTENSION) == 'png')
-                        <img src="{{ url('/storage/' . $excercise->medias->link) }}" width="100">
+                @foreach ($results->sortBy('excercise_id') as $result)
+                    @if ($result->excercise->task_name != $prevAssignment)
+                        <h2 class="h2style">{{ $result->excercise->task_name }}</h2>
+                        @php
+                            $prevAssignment = $result->excercise->task_name;
+                        @endphp
                     @endif
-                    <li>
-                        <a href="{{ url('/storage/' . $excercise->medias->link) }}">Download file</a>
-                    </li>
-                </li>
+                    <div class="divborder">
+                        <li class="inline">
+                            {{ $result->students->name }}
+                        </li>
+                        <li>
+                            Оценка: {{ $result->mark ?? 'Не оценено' }}
+                        </li>
+                        <li class="inline">
+                            @if (pathinfo($result->medias->link, PATHINFO_EXTENSION) == 'png' ||
+                                    pathinfo($result->medias->link, PATHINFO_EXTENSION) == 'jpg')
+                                <img src="{{ url('/storage/' . $result->medias->link) }}" width="100">
+                            @endif
+                        </li>
+                        <div>
+                            <li class="inline">
+                                <a class="bttn2" href="{{ url('/storage/' . $result->medias->link) }}">Скачать</a>
+                            </li>
+                            |
+                            @if (Auth::user()->role_id == 2)
+                                <li class="inline">
+                                    <a class="bttn"
+                                        href="{{ route('studentcourses.mark-task', $result->id) }}">Оценить</a>
+                                </li>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
             </ul>
-        @endforeach
+        </div>
     </div>
 
 

@@ -9,6 +9,9 @@ class Result extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['student_id','excercise_id','media_id','mark','professor_id','created_at','updated_at'];
+
+
     public function students()
     {
         return $this->hasOne('App\Models\User','id','student_id');
@@ -22,5 +25,10 @@ class Result extends Model
     public function excercise()
     {
         return $this->hasOne('App\Models\Excercise','id','excercise_id');
+    }
+
+    public function professor()
+    {
+        return $this->hasOne('App\Models\User','id','professor_id');
     }
 }

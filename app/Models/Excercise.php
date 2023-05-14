@@ -27,4 +27,9 @@ class Excercise extends Model
     {
         return $this->hasMany(Result::class);
     }
+
+    public function result_type()
+    {
+        return $this->hasOne('App\Models\ResultType','id','result_type_id');
+    }
 }

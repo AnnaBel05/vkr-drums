@@ -17,9 +17,57 @@
 
     <!-- Styles -->
     <style>
+        .divborder {
+            border: 1px solid #d3d3d3;
+            padding-right: 5%;
+            padding-left: 5%;
+        }
+
+        .h2style {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+            margin-top: 3%;
+            margin-bottom: 3%;
+        }
+
+        .imginline {
+            display: inline-block;
+        }
+
+        .ahidden {
+            display: none;
+        }
+
+        .bttn {
+            color: #ef4444
+        }
+
+        .bttn2 {
+            color: #6495ED;
+        }
+
         .container {
             width: 100%;
             /* border: 1px solid black; */
+            /* border-left: 1px solid black; */
+            padding-right: 5%;
+            padding-left: 5%;
+        }
+
+        .container2 {
+            width: 100%;
+            /* border: 1px solid black; */
+            border-left: 1px solid #d3d3d3;
+            padding-right: 5%;
+            padding-left: 5%;
+        }
+
+        .container3 {
+            width: 50%;
+            /* border: 1px solid black; */
+            /* border-left: 1px solid black; */
             padding-right: 5%;
             padding-left: 5%;
         }

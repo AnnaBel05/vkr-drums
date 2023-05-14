@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Excercise;
 use App\Models\Media;
+use App\Models\Result;
 use App\Models\StudentCourse;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -29,11 +30,17 @@ class StudentCourseController extends ExcerciseController
                     ->where('role_id', 2)->first();
                 $students = User::where('course_id', $studentcourse->id)
                     ->where('role_id', 3)->get();
+                // dd($students);
                 $excercises = Excercise::where('student_course_id', $studentcourse->id)->get();
-
-                return view('studentcourses.index', compact('studentcourse', 'excercises', 'professor', 'students'));
-            }
-            else {
+                if ($user->role_id == 3) {
+                    $results = Result::where('student_id', $user->id)->get();
+                    // dd($results);
+                    return view('studentcourses.index', compact('studentcourse', 'excercises', 'professor', 'students', 'results'));
+                } else if ($user->role_id == 2) {
+                    $results = Result::where('professor_id', $user->id)->get();
+                    return view('studentcourses.index', compact('studentcourse', 'excercises', 'professor', 'students', 'results'));
+                }
+            } else {
                 return view('studentcourses.indexnew');
             }
         } else {
@@ -50,7 +57,7 @@ class StudentCourseController extends ExcerciseController
 
     public function create()
     {
-        $professor = User::where('role_id',2)->get();
+        $professor = User::where('role_id', 2)->get();
 
         return view('studentcourses.create', compact('professor'));
     }
@@ -76,6 +83,83 @@ class StudentCourseController extends ExcerciseController
 
     public function show()
     {
+    }
+
+    public function editTask($id)
+    {
+        $excercise = Excercise::find($id);
+        $media = Media::all();
+
+        return view('studentcourses.edit-task', compact('excercise', 'media'));
+    }
+
+    public function updateTask(Request $request, $id)
+    {
+        $result = new Result;
+
+        $excercise = Excercise::find($id);
+        $courseid = $excercise->student_course_id;
+        $professor = User::where('course_id', $courseid)->where('role_id', 2)->first();
+
+        if (Auth::check()) {
+            $userid = Auth::id();
+            $user = User::where('id', $userid)->first();
+
+            if ($user->role_id == 3) 
+            {
+                $result->student_id = $user->id;
+                $result->excercise_id = $excercise->id;
+
+                if ($request->hasFile('media')) {
+                    $destination_path = 'public/media/course';
+                    $media = $request->file('media');
+                    $mediaName = $media->getClientOriginalName();
+                    $path = $request->file('media')->store($destination_path, 'public');
+                    // $path = $request->file('media')->storeAs($destination_path,$mediaName);  
+        
+                    $mediaVal = new Media;
+                    $mediaVal->name = $mediaName;
+                    $mediaVal->link = $path;
+                    $mediaVal->save($request->all());
+
+                    $result->media_id = $mediaVal->id;
+                } else
+                {
+                    $result->media_id = null;
+                }
+
+                $result->professor_id = $professor->id;
+                $result->created_at = now();
+
+                $result->save($request->all());
+
+
+            } else if ($user->role_id == 2) 
+            {
+                return view('studentcourses.edit-cant');
+            }
+        }
+
+        // $excercise->save($request->all());
+
+        return redirect()->route('studentcourses.index')->with('success', 'Ответ на задание добавлен!');
+    }
+
+    public function markTask($id)
+    {
+        $result = Result::where('id', $id)->first();
+        // dd($result->students);
+
+        return view('studentcourses.mark-task', compact('result'));
+    }
+
+    public function saveMark(Request $request, $id)
+    {
+        $result = Result::where('id',$id)->first();
+        $result->updated_at = now();
+        $result->update($request->all());
+
+        return redirect()->route('studentcourses.index')->with('success', 'Оценка сохранена!');
     }
 
     public function edit(StudentCourse $studentcourse)

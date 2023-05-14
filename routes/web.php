@@ -30,11 +30,27 @@ Route::get('/user-page', [UserPageController::class, 'index']);
 
 Route::get('/course', [StudentCourseController::class, 'index']);
 Route::get('/excercise',[ExcerciseController::class, 'index']);
-Route::get('/createExcercise', [StudentCourseController::class, 'createExcercise']);
+// Route::get('/createExcercise', [StudentCourseController::class, 'createExcercise']);
+
+Route::get('studentcourses/{id}/edit-task', [StudentCourseController::class, 'editTask'])->name('studentcourses.edit-task');
+Route::put('studentcourses/{id}/update-task', [StudentCourseController::class, 'updateTask'])->name('studentcourses.update-task');
+Route::get('studentcourses/{id}/mark-task', [StudentCourseController::class, 'markTask'])->name('studentcourses.mark-task');
+Route::put('studentcourses/{id}/save-mark', [StudentCourseController::class, 'saveMark'])->name('studentcourses.save-mark');
+
+
+
 
 // Route::get('schedules', [ScheduleController::class, 'index']);
 Route::resource('schedules',ScheduleController::class);
-Route::resource('studentcourses',StudentCourseController::class)->middleware('auth');;
+Route::resource('studentcourses',StudentCourseController::class)->middleware('auth');
+
+// Маршрут для отображения формы редактирования ресурса
+// Route::get('studentcourses/{id}/edit-task', 'StudentCourseController@editTask')->name('studentcourses.edit-task');
+// Route::name('studentcourses.edit-task')->get('studentcourses/{id}/edit-task', 'StudentCourseController@editTask');
+
+
+// Маршрут для обновления ресурса
+// Route::put('studentcourses/{id}', 'StudentCourseController@updateTask')->name('studentcourses.update-task');
 
 
 Route::get('/dashboard', function () {

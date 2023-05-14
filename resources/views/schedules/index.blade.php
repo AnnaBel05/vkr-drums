@@ -1,8 +1,13 @@
 @extends('welcome')
 @section('title', 'Расписание')
 @section('content')
-    <div>
-        <div class="container">
+
+    @php
+        $weekday = null;
+    @endphp
+
+    <div class="container3">
+        <div>
             <div class="row">
                 <h3> Расписание </h3>
             </div>
@@ -14,37 +19,52 @@
             </div>
         @endif
 
-        <div class="relative sm:flex container width:80% sm:items-center sm:justify-center bg-gray-100">
+        <div>
             <div class="row">
-                @foreach ($schedules as $schedule => $scheduleValue)
+                @foreach ($schedules->sortBy('day_of_week_id') as $schedule => $scheduleValue)
                     <div>
                         <div>
                             <ul class="text-align:center display:inline-block">
-                                <li class="inline">
-                                    {{ $scheduleValue->professors->name }} :
-                                </li>
-                                <li class="inline">
-                                    {{ $scheduleValue->daysofweek->name }} :
-                                </li>
-                                <li class="inline">
-                                    {{ $scheduleValue->rooms->begin_time ?? '??' }} :
-                                </li>
-                                <li class="inline">
-                                    {{ $scheduleValue->rooms->end_time ?? '??' }} 
-                                </li>
-                                <li class="inline">
-                                    <a class="btn btn-info" href="{{ route('schedules.show',$scheduleValue->id) }}">Show</a>
-                                </li>
-                                <li class="inline">
-                                    <a class="btn btn-primary" href="{{ route('schedules.edit',$scheduleValue->id) }}">Edit</a>
-                                </li>
-                                <li class="inline">
-                                    <form action="{{ route('schedules.destroy',$scheduleValue->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
-                                </li>
+                                <div>
+                                    <div>
+                                        @if ($scheduleValue->daysofweek->name != $weekday)
+                                        <h2 class="h2style">{{ $scheduleValue->daysofweek->name }}</h2>
+                                        @php
+                                            $weekday = $scheduleValue->daysofweek->name
+                                        @endphp
+                                    @endif
+                                    </div>
+                                    <div class="imginline">
+                                        <li class="inline">
+                                            {{ $scheduleValue->professors->name }} - 
+                                        </li>
+                                        <li class="inline">
+                                            {{-- {{ $scheduleValue->daysofweek->name }} : --}}
+                                        </li>
+                                        <li class="inline">
+                                            {{ $scheduleValue->rooms->begin_time ?? '??' }} :
+                                        </li>
+                                        <li class="inline">
+                                            {{ $scheduleValue->rooms->end_time ?? '??' }}
+                                        </li>
+                                    </div>
+                                    <div class="imginline">
+                                        <li class="inline">
+                                            <a class="bttn" href="{{ route('schedules.show', $scheduleValue->id) }}">Show</a>
+                                        </li>
+                                        <li class="inline">
+                                            <a class="bttn2" href="{{ route('schedules.edit', $scheduleValue->id) }}">Edit</a>
+                                        </li>
+                                        <li class="inline">
+                                            <form style="display: inline-block;"
+                                                action="{{ route('schedules.destroy', $scheduleValue->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </li>
+                                    </div>
+                                </div>
                             </ul>
                         </div>
                     </div>
