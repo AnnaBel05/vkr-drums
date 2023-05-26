@@ -18,13 +18,20 @@
 Курсы от лица студента:
 ![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/8c085f4a-9371-4608-9648-ad494f4af588)
 
-Добавить ответ на задание если прием дистанционный:
+Добавить ответ на задание:
 ![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/d37da6c5-f38e-418a-9ed7-8c93452801aa)
+
+Отчет по оценкам у студента:
+![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/1b68e351-abdf-4fa6-9d97-ffb459e75aa9)
+
+Отчет по оценкам у преподавателя:
+![Screenshot from 2023-05-26 20-02-11](https://github.com/AnnaBel05/vkr-drums/assets/79002614/b2d43512-06fb-4265-b9ca-5168152f46af)
+
 
 TODO: 
 - фильтры в расписании;
 - отображение расписания в личном кабинете;
-- отчет по оценкам и отчет по курсу.
+- сумму баллов в отчете.
 
 
 
