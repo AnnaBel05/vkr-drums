@@ -9,30 +9,35 @@
         </div>
 
         @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
         @endif
 
         <div>
             <ul class="text-align:center display:inline-block">
                 <li class="inline">
-                    {{ $result->students->name }} 
+                    {{ $result->students->name }}
                 </li>
                 <li class="inline">
-                    @if (pathinfo($result->medias->link, PATHINFO_EXTENSION) == 'png' ||
-                            pathinfo($result->medias->link, PATHINFO_EXTENSION) == 'jpg')
+                    @if (pathinfo($result->medias?->link, PATHINFO_EXTENSION) == 'png' ||
+                            pathinfo($result->medias?->link, PATHINFO_EXTENSION) == 'jpg')
                         <img src="{{ url('/storage/' . $result->medias->link) }}" width="100">
                     @endif
                 </li>
                 <div>
-                    <li class="inline">
-                        <a class="bttn2" href="{{ url('/storage/' . $result->medias->link) }}">Скачать</a>
-                    </li>
+                    @if ($result->medias?->link == null)
+                        <li class="inline">
+                        </li>
+                    @elseif ($result->medias?->link != null)
+                        <li class="inline">
+                            <a class="bttn2" href="{{ url('/storage/' . $result->medias?->link) }}">Скачать</a>
+                        </li>
+                    @endif
                 </div>
             </ul>
         </div>
@@ -45,7 +50,8 @@
                     <div class="row">
                         <div class="form-group">
                             <label for="mark">Оценка:</label>
-                            <input type="number" id="mark" name="mark" min="1" max="10" step="1">
+                            <input type="number" id="mark" name="mark" min="1" max="10"
+                                step="1">
                         </div>
                     </div>
                 </div>

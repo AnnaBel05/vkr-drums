@@ -85,6 +85,39 @@ class StudentCourseController extends ExcerciseController
     {
     }
 
+    public function showTaskResults() 
+    {
+        $userid = Auth::id();
+        $user = User::where('id',$userid)->first();
+        // dd($user);
+
+        if ($user->role_id == 2) 
+        {
+            $results = Result::where('professor_id', $user->id)->get();
+            $professor = $user;
+            $studentcourse = $professor->course;
+
+            $students = User::where('course_id', $studentcourse->id)
+                ->where('role_id', 3)->get();
+
+            return view('studentcourses.show-task-results', compact('results','studentcourse','professor','students'));
+        }
+        else if ($user->role_id == 3)
+        {
+            $student = $user;
+            $results = Result::where('student_id', $student->id)->get();
+            // dd($results);
+            $studentcourse = $student->course;
+            $professor = User::where('course_id', $studentcourse->id)
+                ->where('role_id',2)->first();
+
+            $students = User::where('course_id', $studentcourse->id)
+                ->where('role_id', 3)->get();
+
+            return view('studentcourses.show-task-results', compact('results','studentcourse','professor','students'));
+        }
+    }
+
     public function editTask($id)
     {
         $excercise = Excercise::find($id);
@@ -148,7 +181,7 @@ class StudentCourseController extends ExcerciseController
     public function markTask($id)
     {
         $result = Result::where('id', $id)->first();
-        // dd($result->students);
+        // dd($result);
 
         return view('studentcourses.mark-task', compact('result'));
     }

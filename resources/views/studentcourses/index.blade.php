@@ -65,9 +65,9 @@
                 </li>
                 <li class="inline">
                     |
-                    <a class="bttn2" href="{{ url('/storage/' . $excercise->medias->link) }}">Скачать</a>
+                    <a class="bttn2" href="{{ url('/storage/' . $excercise->medias->link) }}">Скачать</a> |
                 </li>
-                @if ($excercise->result_type_id == 1)
+                {{-- @if ($excercise->result_type_id == 1)
                     @if (Auth::user()->role_id == 3)
                     |
                         <li class="inline">
@@ -80,7 +80,11 @@
                         <a class="bttn ahidden" href="{{ route('studentcourses.edit-task', $excercise->id) }}">Добавить
                             ответ</a>
                     </li>
-                @endif
+                @endif --}}
+                <li class="inline">
+                    <a class="bttn" href="{{ route('studentcourses.edit-task', $excercise->id) }}">Добавить
+                        ответ</a>
+                </li>
                 <li>
                     {{ $excercise->theory ?? '' }}
                 </li>
@@ -102,6 +106,10 @@
                 <h3> Задания </h3>
             </div>
         </div>
+        <div class="pull-right">
+            <a class="btn btn-success" href="{{ route('studentcourses.show-task-results') }}"> Просмотреть отчет по оценкам
+            </a>
+        </div>
         <div>
             <ul>
                 @foreach ($results->sortBy('excercise_id') as $result)
@@ -119,16 +127,23 @@
                             Оценка: {{ $result->mark ?? 'Не оценено' }}
                         </li>
                         <li class="inline">
-                            @if (pathinfo($result->medias->link, PATHINFO_EXTENSION) == 'png' ||
-                                    pathinfo($result->medias->link, PATHINFO_EXTENSION) == 'jpg')
-                                <img src="{{ url('/storage/' . $result->medias->link) }}" width="100">
+                            @if ($result->medias?->link != null)
+                                @if (pathinfo($result->medias->link, PATHINFO_EXTENSION) == 'png' ||
+                                        pathinfo($result->medias->link, PATHINFO_EXTENSION) == 'jpg')
+                                    <img src="{{ url('/storage/' . $result->medias->link) }}" width="100">
+                                @endif
                             @endif
                         </li>
                         <div>
-                            <li class="inline">
-                                <a class="bttn2" href="{{ url('/storage/' . $result->medias->link) }}">Скачать</a>
-                            </li>
-                            |
+                            @if ($result->medias?->link == null)
+                                <li class="inline">
+                                </li>
+                            @elseif ($result->medias?->link != null)
+                                <li class="inline">
+                                    <a class="bttn2" href="{{ url('/storage/' . $result->medias?->link) }}">Скачать</a> 
+                                </li>
+                            @endif
+                            
                             @if (Auth::user()->role_id == 2)
                                 <li class="inline">
                                     <a class="bttn"

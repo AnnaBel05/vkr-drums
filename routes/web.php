@@ -36,6 +36,8 @@ Route::get('studentcourses/{id}/edit-task', [StudentCourseController::class, 'ed
 Route::put('studentcourses/{id}/update-task', [StudentCourseController::class, 'updateTask'])->name('studentcourses.update-task');
 Route::get('studentcourses/{id}/mark-task', [StudentCourseController::class, 'markTask'])->name('studentcourses.mark-task');
 Route::put('studentcourses/{id}/save-mark', [StudentCourseController::class, 'saveMark'])->name('studentcourses.save-mark');
+Route::get('studentcourses/show-task-results', [StudentCourseController::class, 'showTaskResults'])->name('studentcourses.show-task-results');
+
 
 
 
