@@ -27,13 +27,15 @@
 Отчет по оценкам у преподавателя:
 ![Screenshot from 2023-05-26 20-02-11](https://github.com/AnnaBel05/vkr-drums/assets/79002614/b2d43512-06fb-4265-b9ca-5168152f46af)
 
+Добавлена сумма оценок (доступна и преподавателю, и студенту):
+![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/d7b02aa4-08a1-4bc7-be27-db7428e4a513)
+
 Фильтрация расписания:
 ![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/844757ce-e2d0-48bb-b34b-6b8fec993954)
 
 
 TODO: 
 - автоматическая фильтрация расписания в личном кабинете;
-- сумму баллов в отчете.
 
 
 
