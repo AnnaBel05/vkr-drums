@@ -4,6 +4,7 @@
 
     @php
         $prevStudent = null;
+        $sum = null;
     @endphp
 
     <div class="container3">
@@ -52,9 +53,15 @@
             return $result->student_id . '_' . $result->excercise->task_name;
         }) as $result)
                     @if ($result->students->name != $prevStudent)
+                        @if ($prevStudent != null)
+                            <li class="inline">
+                                <b>Итоговый балл:</b>  {{ $sum }}
+                            </li>
+                        @endif
                         <li>{{ $result->students->name }}:</li>
                         @php
                             $prevStudent = $result->students->name;
+                            $sum = 0;
                         @endphp
                     @endif
                     <li class="inline">
@@ -63,8 +70,17 @@
                     <li class="inline">
                         {{ $result->mark ?? 'Не оценено' }}
                     </li>
+                    @php
+                        $sum += $result->mark ?? 0;
+                    @endphp
                     <br>
                 @endforeach
+                @if ($prevStudent != null)
+                    <li class="inline">
+                        <b>Итоговый балл:</b>  {{ $sum }}
+                    </li>
+                @endif
+
             </ul>
         </div>
     </div>
