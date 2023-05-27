@@ -11,7 +11,7 @@ class Schedule extends Model
     use HasFactory;
 
     //TODO: ADD OTHER FIELDS
-    protected $fillable = ['professor_id','day_of_week_id','room_id'];
+    protected $fillable = ['professor_id', 'student_id', 'day_of_week_id','room_id', 'date'];
     public $timestamps = false;
 
      // TODO: ЗАМЕНИТЬ НА БЕЛОНГТУ
@@ -19,6 +19,11 @@ class Schedule extends Model
     public function professors()
     {
         return $this->hasOne('App\Models\User','id','professor_id');
+    }
+
+    public function students()
+    {
+        return $this->hasOne('App\Models\User','id','student_id');
     }
 
     public function courses()
