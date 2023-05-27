@@ -40,6 +40,24 @@
                         @endforeach
                     </ul>
                 </li>
+                @auth
+                    @if (auth()->user()->role_id == 2)
+                        <div>
+                            @foreach ($studentcourses as $sc)
+                                <ul>
+                                    <li class="inline">
+                                        {{ $sc->id }}
+                                    </li>
+                                    <li class="inline">
+                                        <a class="bttn2" href="{{ route('studentcourses.show', $sc->id) }}">Просмотреть
+                                            курс</a>
+                                    </li>
+                                </ul>
+                            @endforeach
+                        </div>
+                    @endif
+                @endauth
+
                 {{-- <li>
                     example text example text example text example text example text example text example text 
                 </li> --}}
@@ -140,10 +158,10 @@
                                 </li>
                             @elseif ($result->medias?->link != null)
                                 <li class="inline">
-                                    <a class="bttn2" href="{{ url('/storage/' . $result->medias?->link) }}">Скачать</a> 
+                                    <a class="bttn2" href="{{ url('/storage/' . $result->medias?->link) }}">Скачать</a>
                                 </li>
                             @endif
-                            
+
                             @if (Auth::user()->role_id == 2)
                                 <li class="inline">
                                     <a class="bttn"

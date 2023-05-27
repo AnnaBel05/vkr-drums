@@ -37,8 +37,10 @@ class StudentCourseController extends ExcerciseController
                     // dd($results);
                     return view('studentcourses.index', compact('studentcourse', 'excercises', 'professor', 'students', 'results'));
                 } else if ($user->role_id == 2) {
+                    $studentcourses = $professor->courses;
+                    // dd($studentcourses);
                     $results = Result::where('professor_id', $user->id)->get();
-                    return view('studentcourses.index', compact('studentcourse', 'excercises', 'professor', 'students', 'results'));
+                    return view('studentcourses.index', compact('studentcourses','studentcourse', 'excercises', 'professor', 'students', 'results'));
                 }
             } else {
                 return view('studentcourses.indexnew');
@@ -81,8 +83,41 @@ class StudentCourseController extends ExcerciseController
         return redirect()->route('studentcourses.index')->with('success', 'Course was created succesfully.');
     }
 
-    public function show()
+    public function show(StudentCourse $studentcourse)
     {
+        if (Auth::check()) {
+            $userid = Auth::id();
+            $user = User::where('id', $userid)->first();
+
+            // dd($user->course_id);
+
+            if ($user->course_id != null) {
+                $headers = ['Content-Type' => 'application/json; charset=utf-8'];
+                // $studentcourses = StudentCourse::all();
+                // $studentcourse = $user->course;
+                $professor = $studentcourse->professor()->first();
+                $students = User::where('course_id', $studentcourse->id)
+                    ->where('role_id', 3)->get();
+                // dd($students);
+                $excercises = Excercise::where('student_course_id', $studentcourse->id)->get();
+                if ($user->role_id == 2) {
+                    $studentcourses = $professor->courses;
+                    $id = $studentcourse->id;
+                    // dd($studentcourses);
+                    // $results = Result::where('professor_id', $user->id)->get();
+                    $results = Result::whereHas('excercise',function ($query) use ($id) 
+                    {
+                        $query->where('student_course_id', $id);
+                    })->get();
+                    return view('studentcourses.show', compact('studentcourses','studentcourse', 'excercises', 'professor', 'students', 'results'));
+                }
+            } else {
+                return view('studentcourses.indexnew');
+            }
+        } else {
+            return view('studentcourses.index-no-login');
+        }
+        // return view('studentcourses.show', compact('studentCourse'));   
     }
 
     public function showTaskResults() 
