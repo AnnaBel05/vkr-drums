@@ -23,9 +23,9 @@ class StudentCourse extends Model
     {
         return $this->hasMany(User::class);
     }
-    public function professor(): HasMany 
+    public function professor()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsToMany(User::class);
     }
 
     // public function excercise(): HasMany

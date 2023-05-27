@@ -59,6 +59,11 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\StudentCourse','id', 'course_id');
     }
 
+    public function courses()
+    {
+        return $this->belongsToMany(StudentCourse::class);
+    }
+
     public function role()
     {
         return $this->hasOne('App\Models\Role','id', 'role_id');

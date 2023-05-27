@@ -52,18 +52,18 @@
             return $result->student_id . '_' . $result->excercise->task_name;
         }) as $result)
                     @if ($result->students->name != $prevStudent)
-                                <li>{{ $result->students->name }}:</li>
-                                @php
-                                    $prevStudent = $result->students->name;
-                                @endphp
-                            @endif
-                            <li class="inline">
-                                {{ $result->excercise->task_name }}:
-                            </li>
-                            <li class="inline">
-                                {{ $result->mark ?? 'Не оценено' }}
-                            </li>
-                            <br>
+                        <li>{{ $result->students->name }}:</li>
+                        @php
+                            $prevStudent = $result->students->name;
+                        @endphp
+                    @endif
+                    <li class="inline">
+                        {{ $result->excercise->task_name }}:
+                    </li>
+                    <li class="inline">
+                        {{ $result->mark ?? 'Не оценено' }}
+                    </li>
+                    <br>
                 @endforeach
             </ul>
         </div>
