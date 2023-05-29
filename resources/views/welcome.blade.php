@@ -937,11 +937,11 @@
     <div>
         <ul>
             <li class="inline">
-                <a href="{{ url('/') }}"> MAIN PAGE </a> |
+                <a href="{{ url('/') }}"> ГЛАВНАЯ </a> |
             </li>
-            <li class="inline">
+            {{-- <li class="inline">
                 <a href="{{ url('view-roles') }}"> Список </a> |
-            </li>
+            </li> --}}
             <li class="inline">
                 <a href="{{ url('course') }}">Курсы</a> |
             </li>
@@ -949,7 +949,7 @@
                 <a href="{{ url('schedules') }}">Расписание</a> |
             </li>
             <li class="inline">
-                <a href="{{ url('user-page') }}">Личный кабинет</a>
+                <a href="{{ url('dashboard') }}">Личный кабинет</a>
             </li>
         </ul>
     </div>

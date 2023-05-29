@@ -20,7 +20,8 @@
                         <input type="hidden" id="professor_id" name="professor_id">
                         <datalist id="professor_list">
                             @foreach ($professors as $professorValue)
-                                <option value="{{ $professorValue->name }}" data-professor-id="{{ $professorValue->id }}">
+                                <option value="{{ $professorValue->last_name }}" data-professor-id="{{ $professorValue->id }}">
+                                    {{ $professorValue->full_name }} {{ $professorValue->patronymic }}
                                 </option>
                             @endforeach
                         </datalist>
@@ -35,7 +36,9 @@
                         <input type="hidden" id="student_id" name="student_id">
                         <datalist id="student_list">
                             @foreach ($students as $student)
-                                <option value="{{ $student->name }}" data-student-id="{{ $student->id }}"></option>
+                                <option value="{{ $student->last_name }}" data-student-id="{{ $student->id }}">
+                                    {{ $student->full_name }} {{ $student->patronymic }}
+                                </option>
                             @endforeach
                         </datalist>
                     </div>

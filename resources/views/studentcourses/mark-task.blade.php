@@ -4,7 +4,7 @@
     <div>
         <div class="container">
             <div class="row">
-                <h3> ОЦЕНКА </h3>
+                <h3> Оценивание ответа </h3>
             </div>
         </div>
 
@@ -21,8 +21,14 @@
         <div>
             <ul class="text-align:center display:inline-block">
                 <li class="inline">
-                    {{ $result->students->name }}
+                    {{ trim($result->students->last_name) }}
                 </li>
+                <li class="inline">
+                    {{ mb_substr($result->students->full_name, 0, 1) }}.
+                </li>
+                <li class="inline">
+                    {{ mb_substr($result->students->patronymic, 0, 1) }}.
+                </li>;
                 <li class="inline">
                     @if (pathinfo($result->medias?->link, PATHINFO_EXTENSION) == 'png' ||
                             pathinfo($result->medias?->link, PATHINFO_EXTENSION) == 'jpg')
@@ -56,7 +62,7 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Оценить</button>
                 </div>
             </div>
         </form>

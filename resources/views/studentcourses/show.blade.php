@@ -16,11 +16,12 @@
         @auth
             @if (auth()->user()->role_id == 2)
                 <div class="pull-right">
-                    <a class="btn btn-success" href="{{ route('studentcourses.create') }}"> Create New Course </a>
+                    <a class="btn btn-success" href="{{ route('studentcourses.create') }}"> Создать новый курс </a>
                 </div>
 
                 <div class="pull-right">
-                    <a class="btn btn-success" href="{{ route('studentcourses.edit', $studentcourse->id) }}"> Add a task </a>
+                    <a class="btn btn-success" href="{{ route('studentcourses.edit', $studentcourse->id) }}"> Добавить задание
+                    </a>
                 </div>
             @endif
         @endauth
@@ -34,13 +35,30 @@
         <div>
             <ul class="text-align:center display:inline-block">
                 <li>
-                    Преподаватель: {{ trim($professor->name) }}
+                    Преподаватель:
+                </li>
+                <li class="inline">
+                    {{ trim($professor->last_name) }}
+                </li>
+                <li class="inline">
+                    {{ mb_substr($professor->full_name, 0, 1) }}.
+                </li>
+                <li class="inline">
+                    {{ mb_substr($professor->patronymic, 0, 1) }}.
                 </li>
                 <li>
                     Студент:
                     <ul>
                         @foreach ($students as $student)
-                            <li class="inline"> {{ trim($student->name) }};</li>
+                            <li class="inline">
+                                {{ trim($student->last_name) }}
+                            </li>
+                            <li class="inline">
+                                {{ mb_substr($student->full_name, 0, 1) }}.
+                            </li>
+                            <li class="inline">
+                                {{ mb_substr($student->patronymic, 0, 1) }}.
+                            </li>;
                         @endforeach
                     </ul>
                 </li>
@@ -82,7 +100,7 @@
                 </li>
                 <li class="inline">
                     |
-                    <a class="bttn2" href="{{ url('/storage/' . $excercise->medias->link) }}">Скачать</a> |
+                    <a class="bttn2" href="{{ url('/storage/' . $excercise->medias->link) }}">Скачать</a>
                 </li>
                 {{-- @if ($excercise->result_type_id == 1)
                     @if (Auth::user()->role_id == 3)
@@ -98,10 +116,12 @@
                             ответ</a>
                     </li>
                 @endif --}}
-                <li class="inline">
-                    <a class="bttn" href="{{ route('studentcourses.edit-task', $excercise->id) }}">Добавить
-                        ответ</a>
-                </li>
+                @if (Auth::user()->role_id == 3)
+                    <li class="inline">
+                        | <a class="bttn" href="{{ route('studentcourses.edit-task', $excercise->id) }}">Добавить
+                            ответ</a>
+                    </li>
+                @endif
                 <li>
                     {{ $excercise->theory ?? '' }}
                 </li>
@@ -138,8 +158,14 @@
                     @endif
                     <div class="divborder">
                         <li class="inline">
-                            {{ $result->students->name }}
+                            {{ trim($result->students->last_name) }}
                         </li>
+                        <li class="inline">
+                            {{ mb_substr($result->students->full_name, 0, 1) }}.
+                        </li>
+                        <li class="inline">
+                            {{ mb_substr($result->students->patronymic, 0, 1) }}.
+                        </li>;
                         <li>
                             Оценка: {{ $result->mark ?? 'Не оценено' }}
                         </li>

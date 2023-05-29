@@ -4,7 +4,7 @@
     <div>
         <div class="container">
             <div class="row">
-                <h3> НЕУЖЕЛИ МАРШРУТ СРАБОТАЛ </h3>
+                <h3> Прикрепить ответ на задание </h3>
             </div>
         </div>
 
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
                 </div>
             </div>
         </form>
