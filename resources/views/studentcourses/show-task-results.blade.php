@@ -20,6 +20,18 @@
             </div>
         @endif
 
+        @auth
+            @if (auth()->user()->role_id == 2)
+                <div class="pull-right">
+                    <a class="btn btn-success" href="{{ route('studentcourses.create') }}"> Create New Course </a>
+                </div>
+
+                <div class="pull-right">
+                    <a class="btn btn-success" href="{{ route('studentcourses.edit', $studentcourse->id) }}"> Add a task </a>
+                </div>
+            @endif
+        @endauth
+
         <div>
             <ul class="text-align:center display:inline-block">
                 <li>
@@ -39,6 +51,24 @@
             </ul>
         </div>
 
+        @auth
+            @if (auth()->user()->role_id == 2)
+                <div>
+                    @foreach ($studentcourses as $sc)
+                        <ul>
+                            <li class="inline">
+                                {{ $sc->name }}
+                            </li>
+                            <li class="inline">
+                                <a class="bttn2" href="{{ route('studentcourses.show', $sc->id) }}">Просмотреть
+                                    курс</a>
+                            </li>
+                        </ul>
+                    @endforeach
+                </div>
+            @endif
+        @endauth
+
     </div>
 
     <div class="container2">
@@ -55,7 +85,7 @@
                     @if ($result->students->name != $prevStudent)
                         @if ($prevStudent != null)
                             <li class="inline">
-                                <b>Итоговый балл:</b>  {{ $sum }}
+                                <b>Итоговый балл:</b> {{ $sum }}
                             </li>
                         @endif
                         <li>{{ $result->students->name }}:</li>
@@ -77,7 +107,7 @@
                 @endforeach
                 @if ($prevStudent != null)
                     <li class="inline">
-                        <b>Итоговый балл:</b>  {{ $sum }}
+                        <b>Итоговый балл:</b> {{ $sum }}
                     </li>
                 @endif
 

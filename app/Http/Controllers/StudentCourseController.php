@@ -66,19 +66,28 @@ class StudentCourseController extends ExcerciseController
 
     public function store(Request $request)
     {
-        $professor = User::where('id', $request->professor_id)->first();
-        $studentCourse = $professor->course;
+        $professor = Auth::id();
+        
+        // dd($request);
+        $studentcourse = new StudentCourse;
+        $studentcourse->name = $request->name;
+        $studentcourse->save($request->all());
+
+        $studentcourse->professor()->attach((Auth::id()));
+
+
+        // $studentCourse = $professor->course;
 
         // $studentCourse = StudentCourse::create($request->all());
         // $studentCourse->update($request->all());
 
-        $studentid = Auth::id();
-        $student = User::where('id', $studentid)->first();
-        $student->course_id = $studentCourse->id;
+        // $studentid = Auth::id();
+        // $student = User::where('id', $studentid)->first();
+        // $student->course_id = $studentCourse->id;
 
         // dd($request);
 
-        $student->update();
+        // $student->update();
 
         return redirect()->route('studentcourses.index')->with('success', 'Course was created succesfully.');
     }
@@ -131,11 +140,12 @@ class StudentCourseController extends ExcerciseController
             $results = Result::where('professor_id', $user->id)->get();
             $professor = $user;
             $studentcourse = $professor->course;
+            $studentcourses = $professor->courses;
 
             $students = User::where('course_id', $studentcourse->id)
                 ->where('role_id', 3)->get();
 
-            return view('studentcourses.show-task-results', compact('results','studentcourse','professor','students'));
+            return view('studentcourses.show-task-results', compact('results', 'studentcourses', 'studentcourse','professor','students'));
         }
         else if ($user->role_id == 3)
         {

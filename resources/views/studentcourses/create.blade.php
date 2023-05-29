@@ -31,6 +31,11 @@
                 </select>
             </div>
 
+            <div class="row">
+                <label for="name">Название курса:</label>
+                <input type="text" name="name" id="name">
+            </div>
+
             {{-- <div class="form-group">
                 <strong>Студент: </strong>
                 <select name="student_id" class="form-control" id="student_id" required>

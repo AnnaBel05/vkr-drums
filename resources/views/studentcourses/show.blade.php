@@ -13,13 +13,17 @@
             </div>
         </div>
 
-        {{-- <div class="pull-right">
-            <a class="btn btn-success" href="{{ route('studentcourses.create') }}"> Create New Course </a>
-        </div> --}}
+        @auth
+            @if (auth()->user()->role_id == 2)
+                <div class="pull-right">
+                    <a class="btn btn-success" href="{{ route('studentcourses.create') }}"> Create New Course </a>
+                </div>
 
-        <div class="pull-right">
-            <a class="btn btn-success" href="{{ route('studentcourses.edit', $studentcourse->id) }}"> Add a task </a>
-        </div>
+                <div class="pull-right">
+                    <a class="btn btn-success" href="{{ route('studentcourses.edit', $studentcourse->id) }}"> Add a task </a>
+                </div>
+            @endif
+        @endauth
 
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
@@ -44,7 +48,7 @@
                     @foreach ($studentcourses as $sc)
                         <ul>
                             <li class="inline">
-                                {{ $sc->id }}
+                                {{ $sc->name }}
                             </li>
                             <li class="inline">
                                 <a class="bttn2" href="{{ route('studentcourses.show', $sc->id) }}">Просмотреть курс</a>

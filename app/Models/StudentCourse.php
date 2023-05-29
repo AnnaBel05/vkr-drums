@@ -12,7 +12,7 @@ class StudentCourse extends Model
 
     // public $timestamps = false;
 
-    protected $fillable = ['created_at', 'updated_at'];
+    protected $fillable = ['name', 'created_at', 'updated_at'];
 
     public function schedule(): HasMany
     {
