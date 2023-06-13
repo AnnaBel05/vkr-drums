@@ -10,7 +10,7 @@
 ![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/e6d62ce3-2d50-45ff-b45d-1b8bc34d3291)
 
 Оценка ответа на задание:
-![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/045a0dbf-ea01-488c-8a5e-44d70f2946e3)
+![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/a6708fdb-7237-4d38-93fc-a72fed54b470)
 
 Расписание:
 ![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/c21243f6-aaa2-46c3-8b7c-2bb5526a0ee7)
