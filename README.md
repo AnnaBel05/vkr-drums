@@ -1,46 +1,28 @@
 ## drum studio
 
 Главная страница:
-![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/97a10008-f1cf-4ca6-b5be-43cf3e79b884)
+![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/2849336f-1c8e-417d-a302-e26c4005b0b0)
 
 Личный кабинет:
-![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/905a94eb-5ce8-41af-9103-a2cd9061d054)
+![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/6e4f4631-ec69-4aff-aadf-6a1e38e7b395)
 
-Курсы от лица преподавателя:
-![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/93dbc919-c7b6-475a-8934-084ea7db4727)
+Курсы:
+![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/e6d62ce3-2d50-45ff-b45d-1b8bc34d3291)
 
 Оценка ответа на задание:
-![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/18915ae9-b60b-4468-860d-07acf519ab8a)
+![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/045a0dbf-ea01-488c-8a5e-44d70f2946e3)
 
 Расписание:
-![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/78f19412-5781-491d-b119-a23748f27c50)
-
-Курсы от лица студента:
-![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/8c085f4a-9371-4608-9648-ad494f4af588)
+![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/c21243f6-aaa2-46c3-8b7c-2bb5526a0ee7)
 
 Добавить ответ на задание:
-![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/d37da6c5-f38e-418a-9ed7-8c93452801aa)
+![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/0a46d704-3701-4092-a4e9-de98d5f4de69)
 
 Отчет по оценкам у студента:
-![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/1b68e351-abdf-4fa6-9d97-ffb459e75aa9)
+![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/288e9037-9a86-4f97-94a1-6809dcff34d7)
 
 Отчет по оценкам у преподавателя:
-![Screenshot from 2023-05-26 20-02-11](https://github.com/AnnaBel05/vkr-drums/assets/79002614/b2d43512-06fb-4265-b9ca-5168152f46af)
-
-Добавлена сумма оценок (доступна и преподавателю, и студенту):
-![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/d7b02aa4-08a1-4bc7-be27-db7428e4a513)
-
-Если несколько курсов у преподавателя (див слева):
-![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/253fe047-6f24-43a0-8c89-50feefe08bda)
-
-Фильтрация расписания:
-![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/844757ce-e2d0-48bb-b34b-6b8fec993954)
-
-
-TODO: 
-- показывать расписание только на нынешнюю неделю;
-- расписание crud названия
-- везде установить нормальные имена и названия (расписание и профиль!!!!)
+![image](https://github.com/AnnaBel05/vkr-drums/assets/79002614/0c0759e7-560c-44e7-a690-7b969ea9449f)
 
 
 
