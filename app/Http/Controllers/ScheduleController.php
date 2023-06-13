@@ -7,9 +7,11 @@ use App\Models\Room;
 use App\Models\Schedule;
 use App\Models\StudentCourse;
 use App\Models\User;
+use Carbon\Carbon;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Nette\Utils\DateTime;
 
 class ScheduleController extends Controller
 {
@@ -18,25 +20,51 @@ class ScheduleController extends Controller
         $professors = User::where('role_id', 2)->get();
         $students = User::where('role_id', 3)->get();
         $headers = ['Content-Type' => 'application/json; charset=utf-8'];
-        $schedules = Schedule::all();
 
-        $professorFilter = $request->input('professor_filter');
-        $studentFilter = $request->input('student_filter');
-        $dateFilter = $request->input('date_filter');
+        $timestamp = Carbon::now()->timestamp; 
 
-        $schedules = Schedule::query();
+        $date = DateTime::createFromFormat('U', $timestamp);
+        $date->setTime(0, 0, 0); 
+        $dayOfWeek = $date->format('N'); 
+        $startDate = clone $date;
+        $endDate = clone $date;
+
+        $startDate->modify('-' . ($dayOfWeek - 1) . ' day');
+        $endDate->modify('+' . (7 - $dayOfWeek) . ' day');
+
+        // dd($endDate);
+
+        $schedule = Schedule::where('id',8)->get();
+
+
+        $schedules = Schedule::where('date', '>=', $startDate)->where('date', '<=', $endDate)->get();
+        // dd($schedules);
+
+
+        $professorFilter = $request->input('professor_id');
+        $studentFilter = $request->input('student_id');
+;
+
+        $professor = null;
+        $studentt = null;
 
         if ($professorFilter) {
             $schedules->where('professor_id', $professorFilter);
+            $professor = User::where('id', $professorFilter)->first();
+            // dd($professor);
+            // dd($request);
         }
 
         if ($studentFilter) {
             $schedules->where('student_id', $studentFilter);
+            $studentt = User::where('id', $studentFilter)->first();
         }
 
-        $schedules = $schedules->get();
+        $rooms = Room::all();
+        $days = DayOfWeek::all();
+        // $schedules = $schedules->get();
 
-        return view('schedules.index', compact('schedules', 'professors', 'students'));
+        return view('schedules.index', compact('schedules', 'professors', 'students', 'rooms', 'days', 'professor', 'studentt'));
     }
 
     public function create()

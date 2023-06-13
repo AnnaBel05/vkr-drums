@@ -2,10 +2,10 @@
 @section('title', 'Курс')
 @section('content')
 
-<div>
+<div class="container3 divdesignwhite">
     <div class="container">
         <div class="row">
-            <h3> Course </h3>
+            <h1 class="h2style"> Курс </h1> 
         </div>
     </div>
 
@@ -16,7 +16,7 @@
     @endif
 
     <div>
-        <h1> ВЫ НЕ ВОШЛИ В АККАУНТ </h1>
+        <h1 class="h2style"> ВЫ НЕ ВОШЛИ В АККАУНТ </h1>
     </div>
 </div>     
 

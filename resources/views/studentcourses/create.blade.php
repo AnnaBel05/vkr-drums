@@ -3,10 +3,10 @@
 @section('title', 'Курс')
 @section('content')
 
-<div>
+<div class="container3 divdesignwhite">
     <div class="container">
         <div class="row">
-            <h3> Course </h3>
+            <h1 class="h2style"> Создать курс </h1>    
         </div>
     </div>
 
@@ -18,49 +18,41 @@
 
     <form action="{{ route('studentcourses.store') }}" method="POST">
         @csrf
+        <div>
+            <br>
+        </div>
     
          <div class="row">
+            @if (Auth::user()->role_id == 3)
             <div class="form-group">
-                <strong>Преподаватель: </strong>
-                <select name="professor_id" class="form-control" id="professor_id" enctype="multipart/form-data" required>
-                    @foreach ($professor as $professorValue)
-                    <option value="{{ $professorValue->id }}">
-                        {{ $professorValue->name }}
-                    </option>
-                    @endforeach
-                </select>
+                <strong>Выберите преподавателя:</strong>
+                        <input type="text" id="professor_input" list="professor_list" required>
+                        <input type="hidden" id="professor_id" name="professor_id" required>
+                        <datalist id="professor_list">
+                            @foreach ($professor as $professorValue)
+                                <option value="{{ $professorValue->last_name }}" data-professor-id="{{ $professorValue->id }}">
+                                    {{ $professorValue->full_name }} {{ $professorValue->patronymic }}
+                                </option>
+                            @endforeach
+                        </datalist>
+            </div>
+            @endif
+
+            <div>
+                <br>
             </div>
 
             <div class="row">
-                <label for="name">Название курса:</label>
-                <input type="text" name="name" id="name">
+                <strong> Введите название курса: </strong>
+                <input type="text" name="name" id="name" required>
             </div>
 
-            {{-- <div class="form-group">
-                <strong>Студент: </strong>
-                <select name="student_id" class="form-control" id="student_id" required>
-                    @foreach ($student as $studentValue)
-                    <option value="{{ $studentValue->id }}">
-                        {{ $studentValue->name }}
-                    </option>
-                    @endforeach
-                </select>
-            </div> --}}
-
-            {{-- <div class="form-group">
-                <strong>Студент: </strong>
-                <input id="custom_field1" name="custom_field1" type="text" list="datastudent_id" class="form-control">
-                <datalist name="datastudent_id" id="datastudent_id" required>
-                    @foreach ($student as $studentValue)
-                    <option value="{{ $studentValue->id }}">
-                        {{ $studentValue->name }}
-                    </option>
-                    @endforeach
-                </datalist>
-            </div> --}}
+            <div>
+                <br>
+            </div>
     
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">Подтвердить</button>
+                    <button type="submit" class="btn btn-primary bttnbold">Подтвердить</button>
             </div>
         </div>
     </form>

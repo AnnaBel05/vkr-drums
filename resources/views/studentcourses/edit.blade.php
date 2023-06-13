@@ -1,10 +1,10 @@
 @extends('welcome')
 @section('title', 'Добавить задание')
 @section('content')
-    <div>
+    <div class="container3 divdesignwhite">
         <div class="container">
             <div class="row">
-                <h3> Расписание </h3>
+                <h1 class="h2style"> Курс </h1>    
             </div>
         </div>
 
@@ -24,19 +24,30 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="row">
-                        <div class="form-group">
-                            <strong>Выберите файл: </strong>
-                            <input type="file" class="form-control-file" name="media" id="media">
+                        <div>
+                            <strong> Выберите файл: </strong>
                         </div>
 
                         <div class="form-group">
-                            <strong>Введите задание: </strong>
-                            <textarea rows="5" cols="50" name="theory" id="theory"></textarea>
+                            {{-- <strong>Выберите файл: </strong> --}}
+                            <input type="file" class="form-control-file" name="media" id="media">
+                        </div>
+
+                        <div>
+                            <br>
+                            <strong> Введите задание: </strong>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea rows="5" cols="92" name="theory" id="theory" required></textarea>
                         </div>
                     </div>
                 </div>
+                <div>
+                    <br>
+                </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">Подтвердить</button>
+                    <button type="submit" class="btn btn-primary bttnbold">Подтвердить</button>
                 </div>
             </div>
         </form>

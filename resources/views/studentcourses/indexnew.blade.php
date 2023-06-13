@@ -2,7 +2,7 @@
 @section('title', 'Курс')
 @section('content')
 
-<div>
+<div class="container3 divdesignwhite">
     <div class="container">
         <div class="row">
             <h3> Course </h3>

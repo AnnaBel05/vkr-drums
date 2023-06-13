@@ -1,43 +1,36 @@
-<!DOCTYPE html>
-<head>
-    <title>@yield('title')</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}" charset="utf-8">
-    <style>
-    {
-        box-sizing: border-box;
-    }
-    /* Set additional styling options for the columns*/
-    .column {
-    float: left;
-    width: 200px;
-    }
-    .row:after {
-    content: "";
-    display: table;
-    clear: both;
-    }
-    </style>
-</head>
-<html>
+@extends('welcome')
+@section('title', 'Добавить задание')
+@section('content')
 
-    <body>
-        <h1> MAIN PAGE </h1>
-
-        <div>
-            <a href="{{ url('view-roles') }}"> Список </a>
+    <div class="container3 divdesignwhite">
+        <div class="container">
+            <div class="row">
+                <h1 class="h2style"> Добро пожаловать! </h1>
+            </div>
         </div>
-
-        <!-- <div>
-            <a href="{{ url('favourites') }}">Избранное</a>
+        <div class="containernav3">
+            <div style="width: 60%">
+                <p>
+                    Добро пожаловать в школу чародейства и волшебства!..
+                </p>
+                <br>
+                <p>
+                    Упс, не то приветствие. Мы рады видеть вас в нашей барабанной школе. Здесь вы сможете раскрыть свой музыкальный потенциал и погрузиться в мир ритма и звуков. Независимо от вашего уровня игры и опыта, мы предлагаем уникальные возможности для обучения
+                    и совершенствования игры на ударной установке.Наши опытные преподаватели и профессиональное оборудование помогут вам достичь новых высот в музыкальном искусстве. Мы стремимся создать вдохновляющую и дружескую атмосферу, где каждый
+                    студент может развиваться и раскрыть свой творческий потенциал.
+                </p>
+                <br>
+            </div>
+            <div style="width: 40%">
+                <img style="border-radius: 45px" src="https://nationaltoday.com/wp-content/uploads/2020/11/National-Drummer-Day-1.jpg">
+            </div>
         </div>
-        <div>
-            <a href="{{ url('compare') }}">Сравнение</a>
-        </div> -->
-
-        <div class="container page">
-        @yield('content')
+        <div class="container">
+            <p>
+                И помните, в нашей школе нет волшебных, но есть барабанные палочки, которые точно создадут волшебство на вашем инструменте! Мы не Хогвартс, но здесь вы сможете стать настоящими мастерами ритма и виртуозами на барабанах. Присоединяйтесь к нам и
+                станьте частью нашей музыкальной семьи. Вместе мы создадим магию ударных ритмов!
+            </p>
         </div>
-        @yield('scripts')
-    </body>
+    </div>
 
-</html>
+@endsection

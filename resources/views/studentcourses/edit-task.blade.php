@@ -1,10 +1,10 @@
 @extends('welcome')
 @section('title', 'Добавить задание')
 @section('content')
-    <div>
+    <div class="container3 divdesignwhite">
         <div class="container">
             <div class="row">
-                <h3> Прикрепить ответ на задание </h3>
+                <h1 class="h2style"> Прикрепить ответ на задание </h1>    
             </div>
         </div>
 
@@ -24,10 +24,16 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="row">
+                        <div>
+                            <br>
+                            <strong> Выберите файл: </strong>
+                        </div>
+
                         <div class="form-group">
-                            <strong>Выберите файл: </strong>
+                            {{-- <strong>Выберите файл: </strong> --}}
                             <input type="file" class="form-control-file" name="media" id="media">
                         </div>
+
 
                         {{-- <div class="form-group">
                             <strong>Введите задание: </strong>
@@ -36,7 +42,8 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">Отправить</button>
+                    <br>
+                    <button type="submit" class="btn btn-primary bttnbold">Отправить</button>
                 </div>
             </div>
         </form>

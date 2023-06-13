@@ -24,6 +24,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/main', function () {
+    return view('main');
+});
+
 Route::get('/view-roles', [HomeController::class, 'index']);
 
 Route::get('/user-page', [UserPageController::class, 'index']);
