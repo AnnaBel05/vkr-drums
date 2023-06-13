@@ -1067,7 +1067,7 @@
 <body class="antialiased">
     <div>
         <div
-            class="relative min-w-screen sm:flex sm:justify-center margin-right:10% margin-left:10% sm:items-start min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+            class="relative min-w-screen sm:flex sm:justify-center margin-right:10% margin-left:10% sm:items-start min-h-screen divdesignblack dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
             @if (Route::has('login'))
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
                     @auth
